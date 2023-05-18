@@ -1,0 +1,18 @@
+<h1>Log in</h1>
+
+<%= form_with url: login_path do |form| %>
+ <div class="form-floating mb-3">
+        <%= form.text_field :email, class: "form-control", placeholder: "email@example.com" %>
+        <label for="floatingInput">Email</label>
+    </div>
+    <div class="form-floating mb-3">
+        <%= form.password_field :password, class: "form-control", placeholder: "Password" %>
+        <label for="floatingInput">Password</label>
+        <%= link_to "Forgot your password?", password_reset_path, class: "nav-link"%>
+    </div>
+
+    <div>
+        <%= form.submit class: "btn btn-secondary", data: { turbo: false } %>
+    </div>
+
+<% end %>

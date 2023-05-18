@@ -1,0 +1,19 @@
+<h1> Edit your password</h1>
+<%= form_with model: Current.user, local: true, url: password_path do |form| %>
+    
+    <div class="form-floating mb-3">
+        <%= form.password_field :password, class: "form-control", placeholder: "New password"%>
+        <label for="floatingInput">
+            <%= form.object.errors[:password].any? ? "Invalid password format" : "New password" %>
+        </label>
+    </div>
+    <div class="form-floating mb-3">
+        <%= form.password_field :password_confirmation, class: "form-control", placeholder: "Password confirmation" %>
+        <label for="floatingInput">
+            <%= form.object.errors[:password_confirmation].any? ? "Passwords don't match" : "Password confirmation" %>
+        </label>
+    </div>
+    <div>
+        <%= form.submit "Update", method: :patch, class: "btn btn-secondary", data: { turbo: false } %>
+    </div>
+<% end %>

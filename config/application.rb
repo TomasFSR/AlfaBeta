@@ -6,10 +6,14 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module AlfaBeta
+module Letters
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+
+    ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
+      html_tag.gsub("form-control", "form-control is-invalid").html_safe
+    end
 
     # Configuration for the application, engines, and railties goes here.
     #

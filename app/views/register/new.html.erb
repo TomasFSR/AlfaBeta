@@ -1,0 +1,25 @@
+<h1> Sign up</h1>
+<%= form_with model: @user, local: true, url: register_path do |form| %>
+    
+    <div class="form-floating mb-3">
+        <%= form.text_field :email, class: "form-control", placeholder: "example@email.com" %>
+        <label for="floatingInput">
+            <%= form.object.errors[:email].any? ? "Invalid email" : "Email" %>
+        </label>
+    </div>
+    <div class="form-floating mb-3">
+        <%= form.password_field :password, class: "form-control", placeholder: "Password"%>
+        <label for="floatingInput">
+            <%= form.object.errors[:password].any? ? "Invalid password format" : "Password" %>
+        </label>
+    </div>
+    <div class="form-floating mb-3">
+        <%= form.password_field :password_confirmation, class: "form-control", placeholder: "Password confirmation" %>
+        <label for="floatingInput">
+            <%= form.object.errors[:password_confirmation].any? ? "Passwords don't match" : "Password confirmation" %>
+        </label>
+    </div>
+    <div>
+        <%= form.submit class: "btn btn-secondary", data: { turbo: false } %>
+    </div>
+<% end %>
