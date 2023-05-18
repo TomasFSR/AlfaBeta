@@ -1,47 +1,34 @@
-<nav class="navbar bg-body-tertiary" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
   <div class="container-fluid">
     <%= link_to "AlfabetA<sub>pp</sub>".html_safe, root_path, class: "navbar-brand" %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item">
-            <%= link_to "Home", root_path, class: "nav-link #{'active' if current_page?(root_path)}" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "About", about_path, class: "nav-link #{'active' if current_page?(about_path)}" %>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Alfabet
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Cyrylic</a></li>
-              <li><a class="dropdown-item" href="#">Korean</a></li>
-            </ul>
-          </li>
-        </ul>
-
-        <ul>
-          <% if Current.user %>
-          <ul>
-          <li class="nav-item">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <span class="navbar-text"></span>
+        <%= link_to "About", about_path, class: "nav-link #{'active' if current_page?(about_path)}" %>
+        <div class="dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Alphabet</a>
+            <div class="dropdown-menu dropdown-menu-dark">
+              <a class="dropdown-item" href="#">Cyrilic</a>
+              <a class="dropdown-item" href="#">Korean</a>
+            </div>
+        </div>
+      </div>   
+    </div>
+    <div class="navbar-nav">
+      <% if Current.user %>
+          <div class="nav-item">
             <%= link_to Current.user.email, password_path, method: :get, class: "nav-link"%>
-          </li>
-            <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-secondary" %>
-            <% else %>
-            <%= link_to "Log in", login_path, class: "btn btn-secondary" %>
-            <%= link_to "Sign up", register_path, class: "btn btn-secondary" %>
-          </ul>
-          <% end %>
-        </ul>
-     </div>
+          </div>
+            <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-outline-secondary" %>
+        <% else %>
+          <div>
+            <%= link_to "Log in", login_path, class: "btn #{current_page?(login_path) ? "btn-secondary" : "btn-outline-secondary"}" %>
+            <%= link_to "Sign up", register_path, class: "btn #{current_page?(register_path) ? "btn-secondary" : "btn-outline-secondary"}" %>
+          </div>
+        <% end %>  
     </div>
   </div>
-</nav>
+</nav>     
