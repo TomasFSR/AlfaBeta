@@ -8,11 +8,11 @@
     <div class="form-floating mb-3">
         <%= form.password_field :password, class: "form-control", placeholder: "Password" %>
         <label for="floatingInput">Password</label>
-        <%= link_to "Forgot your password?", password_reset_path, class: "nav-link"%>
     </div>
 
     <div>
-        <%= form.submit class: "btn btn-secondary", data: { turbo: false } %>
+        <%= form.submit "Log in", class: "btn btn-secondary", data: { turbo: false } %>
+        <%= link_to "Forgot my password", password_reset_path, class: "btn btn-outline-secondary"%>
     </div>
-
+    
 <% end %>

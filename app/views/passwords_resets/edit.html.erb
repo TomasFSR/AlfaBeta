@@ -1,0 +1,19 @@
+<h1>Reset your password</h1>
+
+<%= form_with model: @user, url: password_reset_edit_path(token: params[:token]) do |form| %>
+    <div class="form-floating mb-3">
+        <%= form.password_field :password, class: "form-control", placeholder: "Password"%>
+        <label for="floatingInput">
+            <%= form.object.errors[:password].any? ? "Invalid password format" : "Password" %>
+        </label>
+    </div>
+    <div class="form-floating mb-3">
+        <%= form.password_field :password_confirmation, class: "form-control", placeholder: "Password confirmation" %>
+        <label for="floatingInput">
+            <%= form.object.errors[:password_confirmation].any? ? "Passwords don't match" : "Password confirmation" %>
+        </label>
+    </div>
+    <div>
+        <%= form.submit class: "btn btn-secondary", data: { turbo: false } %>
+    </div>
+<%end%>
